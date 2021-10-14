@@ -5,7 +5,7 @@ import argparse
 import analysis.csv as c_an
 import analysis.xml as x_an
 
-import pdb
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
@@ -18,14 +18,20 @@ if __name__ == "__main__":
     args = parse_arguments()
     datafile = args.datafile
 
-    pdb.set_trace()
+
     
     print(args)
 
     if args.extension == 'xml':
-
-        x_an.launch_analysis("SyceronBrut.xml")
+        try:
+            x_an.launch_analysis(datafile)
+        except:
+            print("Problème de fichier man! : " )
     elif args.extension == 'csv':
-        c_an.launch_analysis('current_mps.csv')
+        try:
+            c_an.launch_analysis(datafile)
+        except:
+            print("Problème de fichier man! : ")
+        
     
 
